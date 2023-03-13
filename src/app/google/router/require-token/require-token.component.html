@@ -1,0 +1,15 @@
+<ng-container [ngSwitch]="tokenReady$ | async">
+  <ng-container *ngSwitchCase="true">
+      <div>
+        <button type="button" (click)="onForceExpired()">Force Expired</button>
+        <button type="button" (click)="onDeleteToken()">Delete Token</button>
+      </div>
+      <router-outlet></router-outlet>
+</ng-container>
+
+<ng-container *ngSwitchCase="false">
+  <button type="button" (click)="onLogin()">Login to Google</button>
+</ng-container>
+
+<div *ngSwitchDefault="">Loading...</div>
+</ng-container>

@@ -1,0 +1,52 @@
+<form [formGroup]="formGroup" (ngSubmit)="doSearch()">
+  <label>
+    <b>Search</b>
+    <input type="text" formControlName="search" />
+  </label>
+  <button type="button" (click)="doClear()">
+    <i>clear</i>
+  </button>
+  <button type="submit">
+    <i>search</i>
+  </button>
+</form>
+
+<nav>
+  <div>
+    <b>Item(s) : </b>
+    <span>
+      <span *ngIf="data.count">
+       [{{ pageOffset + 1 | number }} -
+        {{ pageOffset + data.results.length | number }}]<b>/</b>
+      </span>
+      <span>{{ data.count | number }}</span>
+    </span>
+  </div>
+  <button
+    type="button"
+    role="link"
+    [disabled]="!data.previous"
+    (click)="changePage(data.previous?.searchParams)"
+  >
+    <i>Previous</i>
+  </button>
+  <button
+    type="button"
+    role="link"
+    [disabled]="!data.next"
+    (click)="changePage(data.next?.searchParams)"
+  >
+    <i>Next</i>
+  </button>
+</nav>
+
+<ul>
+  <li
+    *ngFor="let item of data.results"
+    tabindex="0"
+    (click)="doSelect(item)"
+    (keydown.enter)="doSelect(item)"
+  >
+    {{ item.name }}
+  </li>
+</ul>

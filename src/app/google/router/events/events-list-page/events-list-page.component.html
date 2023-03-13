@@ -1,0 +1,6 @@
+<google-events-list *ngIf="data$ | async as data; else loading" [data]="data">
+</google-events-list>
+
+<ng-template #loading>
+  ...lodaing
+</ng-template>
